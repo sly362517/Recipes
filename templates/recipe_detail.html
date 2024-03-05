@@ -1,0 +1,24 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <div class="card">
+                    <img src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.title }}">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ recipe.title }}</h2>
+                        <p class="card-text"><strong>Описание:</strong> {{ recipe.description }}</p>
+                        <p class="card-text"><strong>Шаги приготовления:</strong> {{ recipe.steps }}</p>
+                        <p class="card-text"><strong>Время приготовления:</strong> {{ recipe.cooking_time }} минут</p>
+                        <p class="card-text"><strong>Категории:</strong>
+                            {% for category in recipe.categories.all %}
+                                {{ category.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
